@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">My Gossip Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Gossips</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tags</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "Notre équipe", team_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Contact", contact_path, class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<h1 class="mt-5">Présentation de l'équipe</h1>
+<p class="lead">Découvrez l'équipe trop cool derrière le projet "The Gossip Project".</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card team-member">
+    <%= image_tag("lutin.png", class: "card-img-top img-fluid", alt: "Membre 1") %>
+      <div class="card-body">
+        <h5 class="card-title">Alexandre</h5>
+        <p class="card-text">
+          "Ah, Alexandre, notre joyau de la formation. Il est tellement gentil qu'on pourrait le perdre dans un manuel de politesse. On pourrait le confondre avec un pissenlit tellement il est doux et délicat. Quand il parle, c'est comme si les licornes chantaient des berceuses. Alexandre, le seul gars qui pourrait faire rougir un poulpe avec un simple 'bonjour'. Il est comme une pincée de cannelle dans une mer de plaines de son.."
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card team-member">
+    <%= image_tag("saitama.png", class: "card-img-top img-fluid", alt: "Membre 2") %>
+      <div class="card-body">
+        <h5 class="card-title">Thibault</h5>
+        <p class="card-text">
+        "Thibault, le maître des blagues et des fous rires. Avec lui, une journée de travail devient une comédie stand-up. Il est tellement gentil que même les nuages lui envoient des cœurs. Son humour est aussi pétillant qu'une bouteille de champagne. Thibault, l'homme qui pourrait faire rire une plante verte. Il est comme une dose de bonne humeur dans un monde de routine."
+      </p>
+      </div>
+    </div>
+  </div>
+</div>

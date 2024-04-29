@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liste des potins</title>
+</head>
+<body>
+
+<h1>Liste des potins</h1>
+<ul>
+  <% @gossips.each do |gossip| %>
+    <li><%= link_to gossip.title, gossip_path(gossip) %></li>
+  <% end %>
+</ul>
+
+</body>
+</html>
