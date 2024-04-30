@@ -1,3 +1,5 @@
 class City < ApplicationRecord
     has_many :users
-end
+    
+    validates :name, presence: true, uniqueness: true
+  end

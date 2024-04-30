@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Liste des potins</title>
+  <title>Profil de <%= @user.first_name %></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,13 +13,15 @@
 <div class="collapse navbar-collapse" id="navbarText">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-    <%= link_to "Users", users_path, class: "nav-link" %>
+      <%= link_to "Users", users_path, class: "nav-link" %>
     </li>
     <li class="nav-item">
-    <%= link_to "Gossips", gossips_path, class: "nav-link" %>
+      <%= link_to "Gossips", gossips_path, class: "nav-link" %>
     </li>
     <li class="nav-item">
-    <%= link_to "Tags", tags_path, class: "nav-link" %>
+  <li><%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
+    <li class="nav-item">
+      <%= link_to "Tags", tags_path, class: "nav-link" %>
     </li>
   </ul>
 
@@ -34,18 +36,18 @@
 </div>
 </nav>
 
-  <h1>Liste des potins</h1>
-  <div class="card-container">
+  <h1>Profil de <%= @user.first_name %></h1>
+  <p><strong>Nom:</strong> <%= @user.last_name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Age:</strong> <%= @user.age %></p>
+  <p><strong>Description:</strong> <%= @user.description %></p>
+
+  <h2>Potins publiés par <%= @user.first_name %></h2>
+  <ul>
     <% @gossips.each do |gossip| %>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to gossip.user.first_name, profile_user_path(gossip.user) %></h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary"><%= gossip.title %></h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <%= link_to "voir les potins de #{gossip.user.first_name}", profile_user_path(gossip.user), class: "nav-link" %>
-        </div>
-      </div>
+      <li><%= gossip.title %></li>
+      <!-- Affichez d'autres informations sur le potin au besoin -->
     <% end %>
-  </div>
+  </ul>
 </body>
 </html>

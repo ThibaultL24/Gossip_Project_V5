@@ -31,7 +31,24 @@
   </div>
 </nav>
 
-<h1><%= @gossip.title %></h1>
-<p><%= @gossip.content %></p>
-<p><strong>Auteur:</strong> <%= link_to @gossip.user.first_name, user_path(@gossip.user) %></p>
-<p><strong>Date de création:</strong> <%= @gossip.created_at %></p>
+<%= form_tag(gossips_path) do %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <div class="field">
+    <div class="form-group">
+    <%= label_tag :user_id, "Auteur" %>
+    <%= select_tag 'gossip[user_id]', options_for_select(User.all.collect { |u| [u.first_name, u.id] }), class: "form-control" %>
+    </div>
+  
+    <div class="field">
+      <%= label_tag "gossip[title]", "Title" %>
+      <%= text_field_tag "gossip[title]" %>
+    </div>
+  
+    <div class="field">
+      <%= label_tag "gossip[description]", "Description" %>
+      <%= text_area_tag "gossip[description]" %>
+    </div>
+    
+    <%= submit_tag "Create Gossip" %>
+  <% end %>
