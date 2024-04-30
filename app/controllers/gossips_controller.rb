@@ -19,8 +19,10 @@ class GossipsController < ApplicationController
   def create
     @gossip = Gossip.new(gossip_params)
     if @gossip.save
-      redirect_to gossips_path, notice: "Gossip successfully created!"
+      flash[:success] = 'Gossip créé avec succès !'
+      redirect_to gossips_path
     else
+      flash[:error] = "Erreur lors de la création du Gossip : #{@gossip.errors.full_messages.join(", ")}"
       render :new
     end
   end

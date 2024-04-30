@@ -30,25 +30,31 @@
     </ul>
   </div>
 </nav>
+<div class="container">
+  <% if flash[:error] %>
+    <div class ="alert alert-danger">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
 
-<%= form_tag(gossips_path) do %>
+  <%= form_tag(gossips_path, class: "my-4") do %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-    <div class="field">
     <div class="form-group">
-    <%= label_tag :user_id, "Auteur" %>
-    <%= select_tag 'gossip[user_id]', options_for_select(User.all.collect { |u| [u.first_name, u.id] }), class: "form-control" %>
+      <%= label_tag :user_id, "Auteur" %>
+      <%= select_tag 'gossip[user_id]', options_for_select(User.all.collect { |u| [u.first_name, u.id] }), class: "form-control" %>
     </div>
-  
-    <div class="field">
+
+    <div class="form-group">
       <%= label_tag "gossip[title]", "Title" %>
-      <%= text_field_tag "gossip[title]" %>
+      <%= text_field_tag "gossip[title]", nil, class: "form-control" %>
     </div>
-  
-    <div class="field">
+
+    <div class="form-group">
       <%= label_tag "gossip[description]", "Description" %>
-      <%= text_area_tag "gossip[description]" %>
+      <%= text_area_tag "gossip[description]", nil, class: "form-control" %>
     </div>
-    
-    <%= submit_tag "Create Gossip" %>
+
+    <%= submit_tag "Create Gossip", class: "btn btn-primary" %>
   <% end %>
+</div>

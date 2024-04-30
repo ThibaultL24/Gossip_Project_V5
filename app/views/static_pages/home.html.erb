@@ -38,10 +38,11 @@
   </nav>
 
 <div class="card-container">
+<% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
   <% @gossips.each do |gossip| %>
-    <div class="card" style="width: 18rem;">
+    <div class="card <%= background_cards.sample %>" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><%= link_to gossip.user.first_name, user_gossips_path(gossip.user) %></h5>
+      <h5 class="card-title"><%= link_to gossip.user.first_name, user_path(gossip.user) %></h5>
         <h6 class="card-subtitle mb-2 text-body-secondary"><%= gossip.title %></h6>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <%= link_to "voir les potins de #{gossip.user.first_name}", user_gossips_path(gossip.user), class: "nav-link" %>

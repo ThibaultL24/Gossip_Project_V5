@@ -31,3 +31,36 @@
     width: 250px;
     margin: 10px; 
   }
+
+  .pastel-blue {
+    background-color: #aec6cf;
+  }
+  
+  .pastel-pink {
+    background-color: #ffb6c1;
+  }
+  
+  .pastel-green {
+    background-color: #b0e57c;
+  }
+  
+  .pastel-yellow {
+    background-color: #fdfd96;
+  }
+  
+  .pastel-orange {
+    background-color: #ffcccb;
+  }
+  
+  .pastel-purple {
+    background-color: #cbb2d4;
+  }
+  
+  .card a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .card a:hover {
+    text-decoration: underline;
+  }

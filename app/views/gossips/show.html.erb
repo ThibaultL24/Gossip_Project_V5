@@ -35,3 +35,4 @@
 <p><%= @gossip.content %></p>
 <p><strong>Auteur:</strong> <%= link_to @gossip.user.first_name, user_path(@gossip.user) %></p>
 <p><strong>Date de création:</strong> <%= @gossip.created_at %></p>
+<h5 class="card-title"><%= link_to gossip.user.first_name, user_path(gossip.user) %></h5>
