@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liste des potins</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">My Gossip Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gossips</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tags</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Notre équipe", team_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <h1>Liste des potins</h1>
+  <ul>
+    <% @gossips.each do |gossip| %>
+      <li><%= link_to gossip.title, gossip_path(gossip) %></li>
+    <% end %>
+  </ul>
+</body>
+</html>

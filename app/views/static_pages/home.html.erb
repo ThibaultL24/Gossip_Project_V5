@@ -48,5 +48,12 @@
   <% end %>
 </div>
 
+<% @gossips.each do |gossip| %>
+    <div>
+      <strong><%= link_to gossip.title, gossips_path(gossip) %></strong> 
+      par <%= link_to gossip.user.first_name, users_path(gossip.user) %>
+    </div>
+  <% end %>
+
 </body>
 </html>
