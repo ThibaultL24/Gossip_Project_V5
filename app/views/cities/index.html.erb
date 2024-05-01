@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liste des villes</title>
+  <!-- Ajoute les liens vers les fichiers CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Intègre la barre de navigation Bootstrap -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Accueil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "Users", users_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Gossips", gossips_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Tags", tags_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Cities", cities_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+      </ul>
+    
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Notre équipe", team_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Utilise la grille Bootstrap pour afficher la liste des villes -->
+  <div class="container">
+    <h1>Liste des villes</h1>
+    <div class="row">
+      <% @cities.each do |city| %>
+        <div class="col-sm-6">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title"><%= city.name %></h5>
+              <p class="card-text">
+                <%= link_to "Voir les détails de la ville", city_path(city), class: "btn btn-primary" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <!-- Ajoute les scripts JavaScript de Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,38 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Détails du potin</title>
+</head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Accueil</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<a class="navbar-brand" href="/">Accueil</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Users", users_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Gossips", gossips_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Tags", tags_path, class: "nav-link" %>
-      </li>
-    </ul>
+<div class="collapse navbar-collapse" id="navbarText">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <%= link_to "Users", users_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Gossips", gossips_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Tags", tags_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Cities", cities_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+  </ul>
 
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <%= link_to "Notre équipe", team_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Contact", contact_path, class: "nav-link" %>
-      </li>
-    </ul>
-  </div>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <%= link_to "Notre équipe", team_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Contact", contact_path, class: "nav-link" %>
+    </li>
+  </ul>
+</div>
 </nav>
-
+<!-- Affichage des détails du potin actuel -->
 <h1><%= @gossip.title %></h1>
-<p><%= @gossip.content %></p>
 <p><strong>Auteur:</strong> <%= link_to @gossip.user.first_name, user_path(@gossip.user) %></p>
+<p><strong>Contenu:</strong> <%= @gossip.description %></p>
 <p><strong>Date de création:</strong> <%= @gossip.created_at %></p>
-<h5 class="card-title"><%= link_to gossip.user.first_name, user_path(gossip.user) %></h5>
+<p><strong>Ville de lauteur:</strong> <%= @gossip.user.city.name %></p>
+<h2>Autres options</h2>
+<%= link_to "Editer Gossip", edit_gossip_path(@gossip), class: "btn btn-dark" %>
+<%= button_to "Supprimer ce potin", @gossip, method: :delete, data: {}, class: "btn btn-danger" %>

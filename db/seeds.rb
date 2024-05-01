@@ -50,7 +50,17 @@ puts "yolo2"
   )
   sleep(0.1) # Attendre 0.1 seconde entre chaque création de gossip
 end
- puts "yolo3"
+
+ 20.times do
+  random_gossip = Gossip.all.sample
+  random_user = users.sample
+  comment = Comment.create!(
+    content: Faker::Lorem.paragraph(sentence_count: 3),
+    gossip: random_gossip,
+    user: random_user
+  )
+end
+puts "yolo3"
 # Créer 10 tags aléatoires
 10.times do
   tag = Tag.create!(name: Faker::Lorem.word)

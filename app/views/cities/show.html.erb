@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Profil de <%= @user.first_name %></title>
+  <title>Détails de la ville</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,10 +19,15 @@
       <%= link_to "Gossips", gossips_path, class: "nav-link" %>
     </li>
     <li class="nav-item">
-  <li><%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
+      <%= link_to "New Gossip", new_gossip_path, class: "nav-link" %>
+    </li>
     <li class="nav-item">
       <%= link_to "Tags", tags_path, class: "nav-link" %>
     </li>
+    <li class="nav-item">
+      <%= link_to "Cities", cities_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
   </ul>
 
   <ul class="navbar-nav ml-auto">
@@ -36,18 +41,23 @@
 </div>
 </nav>
 
-  <h1>Profil de <%= @user.first_name %></h1>
-  <p><strong>Nom:</strong> <%= @user.last_name %></p>
-  <p><strong>Email:</strong> <%= @user.email %></p>
-  <p><strong>Age:</strong> <%= @user.age %></p>
-  <p><strong>Description:</strong> <%= @user.description %></p>
+<h1>Détails de la ville</h1>
 
-  <h2>Potins publiés par <%= @user.first_name %></h2>
-  <ul>
-    <% @gossips.each do |gossip| %>
-      <li><%= gossip.title %></li>
-      <!-- Affichez d'autres informations sur le potin au besoin -->
-    <% end %>
-  </ul>
+<h2><%= @city.name %></h2>
+
+<h3>Potins écrits par les utilisateurs associés à la ville</h3>
+<div class="card-container">
+  <% @city.gossips.each do |gossip| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to gossip.user.first_name, user_path(gossip.user) %></h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"><%= gossip.title %></h6>
+        <p class="card-text"><%= gossip.description %></p>
+        <%= link_to "Voir le gossip", gossip_path(gossip), class: "nav-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 </body>
 </html>

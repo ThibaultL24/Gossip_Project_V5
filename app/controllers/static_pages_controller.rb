@@ -11,6 +11,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @gossips = Gossip.all
+    @gossip = @gossips.first
   end
   
   def show
