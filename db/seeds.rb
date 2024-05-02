@@ -23,7 +23,8 @@ users = []
     description: Faker::Lorem.paragraph(sentence_count: 5),
     email: Faker::Internet.email,
     age: Faker::Number.between(from: 13, to: 60),
-    city: cities.sample
+    city: cities.sample,
+    password: Faker::Internet.password(min_length: 8)
   )
   users << user
   sleep(0.1) # Attendre 0.1 seconde entre chaque création d'utilisateur
@@ -73,6 +74,18 @@ Gossip.all.each do |gossip|
   rand(1..5).times do
     gossip.tags << Tag.all.sample
   end
+end
+puts "yolo5"
+# Méthode pour obtenir un utilisateur et un potin aléatoires
+def random_user_and_gossip
+  user = User.order("RANDOM()").first
+  gossip = Gossip.order("RANDOM()").first
+  return user, gossip
+end
+
+30.times do
+  user, gossip = random_user_and_gossip
+  Like.create(user: user, gossip: gossip)
 end
 
 puts "Seed finished successfully!"

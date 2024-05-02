@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modifier le commentaire</title>
+</head>
+<body>
+<h1>Modifier le commentaire</h1>
+
+<%= render 'form', comment: @comment %>
+
+<%= link_to 'Retour', gossip_comment_path(@gossip, @comment) %>
+</body>
+</html>

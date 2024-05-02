@@ -1,4 +1,8 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_gossip, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
+  
   def index
     @gossips = Gossip.all
   end
@@ -12,7 +16,7 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(gossip_params)
+    @gossip = current_user.gossips.build(gossip_params)
     if @gossip.save
       flash[:success] = 'Gossip créé avec succès !'
       redirect_to gossip_path(@gossip)
@@ -44,9 +48,33 @@ class GossipsController < ApplicationController
     redirect_to "/gossips/"
   end
 
+  def like
+    @gossip = Gossip.find(params[:id]) # Assurez-vous que @gossip est correctement initialisé
+    @gossip.likes.create(user_id: current_user.id) if @gossip # Vérifiez que @gossip n'est pas nil
+    redirect_to gossip_path(@gossip), notice: 'Gossip liké avec succès !'
+  end
+
+  def unlike
+    @gossip = Gossip.find(params[:id]) # Assurez-vous que @gossip est correctement initialisé
+    like = @gossip.likes.find_by(user_id: current_user.id)
+    like.destroy if like
+    redirect_to gossip_path(@gossip), notice: 'Gossip unliké avec succès !'
+  end
+
   private
 
+  def set_gossip
+    @gossip = Gossip.includes(user: :city).find(params[:id])
+  end
+
+  def authorize_user!
+    unless @gossip.user == current_user
+      flash[:error] = "Vous n'êtes pas autorisé à effectuer cette action."
+      redirect_to gossip_path(@gossip)
+    end
+  end
+
   def gossip_params
-    params.require(:gossip).permit(:user_id, :title, :description)
+    params.require(:gossip).permit(:title, :description)
   end
 end
